@@ -1,23 +1,11 @@
-var http = require("http");
-var fs = require('fs');
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 3000;
 
-http.createServer(function(req,res) {
-    var kode = 0;
-    var file = "";
+app.get('/', function (req, res) {
+    res.send("Hello dev, am a local route nobody knows me yet!");
+});
 
-    if(req.url == "/") {
-        kode = 200;
-        file = "index.html";
-    } else if(req.url == "/contact") {
-        kode = 200;
-        file = "contact.html";
-    } else {
-        kode = 404;
-        file = "404.html";
-    }
-
-    res.writeHead(kode, {"Content-Type" : "text/html"});
-    fs.createReadStream('./template/'+file).pipe(res);
-}).listen(8080);
-
-console.log("Server is running...");
+var server = app.listen(port, function () {
+    console.log('node server is just fine! and running on port - ' + port);
+});
