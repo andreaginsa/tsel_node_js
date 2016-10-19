@@ -28,9 +28,13 @@ http.createServer(function(req,res) {
 		if(access.pathname == "/") {
 			kode = 200;
 			file = "index.html";
+			res.writeHead(kode, {"Content-Type" : "text/html"});
+			fs.createReadStream('./template/'+file).pipe(res);
 		} else if(access.pathname == "/contact") {
 			kode = 200;
 			file = "contact.html";
+			res.writeHead(kode, {"Content-Type" : "text/html"});
+			fs.createReadStream('./template/'+file).pipe(res);
 		} else if(access.pathname == "/form") {
 			if(req.method.toUpperCase() == "POST") {
 				var data_post = "";
@@ -45,14 +49,16 @@ http.createServer(function(req,res) {
 			} else {
 				kode = 200;
 				file = "form.html";
+				res.writeHead(kode, {"Content-Type" : "text/html"});
+				fs.createReadStream('./template/'+file).pipe(res);
 			}
 
 		} else {
 			kode = 404;
 			file = "404.html";
+			res.writeHead(kode, {"Content-Type" : "text/html"});
+			fs.createReadStream('./template/'+file).pipe(res);
 		}
-		res.writeHead(kode, {"Content-Type" : "text/html"});
-		fs.createReadStream('./template/'+file).pipe(res);
 	}
 	
 	
