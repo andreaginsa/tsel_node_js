@@ -31,6 +31,9 @@ http.createServer(function(req,res) {
 		} else if(access.pathname == "/contact") {
 			kode = 200;
 			file = "contact.html";
+		} else if(access.pathname == "/form") {
+			kode = 200;
+			file = "form.html";
 		} else {
 			kode = 404;
 			file = "404.html";
