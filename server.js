@@ -33,8 +33,15 @@ http.createServer(function(req,res) {
 			file = "contact.html";
 		} else if(access.pathname == "/form") {
 			if(req.method.toUpperCase() == "POST") {
-				kode = 200;
-				file = "contact.html";
+				var data_post = "";
+				req.on('data',function(chunk) {
+					data_post += chunck;
+				});
+				
+				req.on('end',function() {
+					res.writeHead(kode, {"Content-Type" : "text/plain"});
+					res.end(data_post);
+				}
 			} else {
 				kode = 200;
 				file = "form.html";
