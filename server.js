@@ -4,6 +4,7 @@ var port = process.env.PORT || 3000;
 var http = require("http");
 var fs = require('fs');
 var url = require('url');
+var qString = require('querystring');
 
 app.get('/', function (req, res) {
     res.send("Hello dev, am a local route nobody knows me yet!");
@@ -20,6 +21,7 @@ http.createServer(function(req,res) {
 	//fs.createReadStream('./template/'+"style.css").pipe(res);
     if(req.url != "/favicon.ico") {
 		var access = url.parse(req.url);
+		var data = qString.parse(access.query);
 		var kode = 0;
 		var file = "";
 
