@@ -38,14 +38,17 @@ http.createServer(function(req,res) {
 		} else if(access.pathname == "/form") {
 			if(req.method.toUpperCase() == "POST") {
 				var data_post = "";
+
+
 				req.on('data',function(chunk) {
-					data_post += chunck;
+					data_post += chunk;
 				});
 				
 				req.on('end',function() {
-					res.writeHead(kode, {"Content-Type" : "text/plain"});
-					res.end(data_post);
-				}
+					 res.writeHead(200, {"Content-Type" : "text/plain"});
+					 res.end(data_post);
+				});
+
 			} else {
 				kode = 200;
 				file = "form.html";
