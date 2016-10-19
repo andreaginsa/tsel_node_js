@@ -32,8 +32,14 @@ http.createServer(function(req,res) {
 			kode = 200;
 			file = "contact.html";
 		} else if(access.pathname == "/form") {
-			kode = 200;
-			file = "form.html";
+			if(req.method.toUpperCase() == "POST") {
+				res.writeHead(kode, {"Content-Type" : "text/plain"});
+				fs.createReadStream("Berhasil POST");
+			} else {
+				kode = 200;
+				file = "form.html";
+			}
+
 		} else {
 			kode = 404;
 			file = "404.html";
