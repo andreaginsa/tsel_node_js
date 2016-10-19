@@ -33,8 +33,8 @@ http.createServer(function(req,res) {
 			file = "contact.html";
 		} else if(access.pathname == "/form") {
 			if(req.method.toUpperCase() == "POST") {
-				res.writeHead(kode, {"Content-Type" : "text/plain"});
-				fs.createReadStream("Berhasil POST");
+				kode = 200;
+				file = "contact.html";
 			} else {
 				kode = 200;
 				file = "form.html";
