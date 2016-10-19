@@ -16,22 +16,27 @@ app.use("/template",express.static(__dirname + "/template"));
 //});
 
 http.createServer(function(req,res) {
-    var kode = 0;
-    var file = "";
+	//fs.createReadStream('./template/'+"style.css").pipe(res);
+    if(req.url != "/favicon.ico") {
+		var access = url.parse(req.url);
+		var kode = 0;
+		var file = "";
 
-    if(req.url == "/") {
-        kode = 200;
-        file = "index.html";
-    } else if(req.url == "/contact") {
-        kode = 200;
-        file = "contact.html";
-    } else {
-        kode = 404;
-        file = "404.html";
-    }
-
-    res.writeHead(kode, {"Content-Type" : "text/html"});
-    fs.createReadStream('./template/'+file).pipe(res);
+		if(access.pathname == "/") {
+			kode = 200;
+			file = "index.html";
+		} else if(access.pathname == "/contact") {
+			kode = 200;
+			file = "contact.html";
+		} else {
+			kode = 404;
+			file = "404.html";
+		}
+		res.writeHead(kode, {"Content-Type" : "text/html"});
+		fs.createReadStream('./template/'+file).pipe(res);
+	}
+	
+	
 }).listen(port);
 
 console.log("Server is running...");
